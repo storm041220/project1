@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+
+<body>
+    <h1 class="alert alert-primary"><center>All Products</center>  </h1>
+    <div class="container">
+        <form action="/search" method="POST">
+            Enter value <input type="text" name="txtSearch">
+            <input type="submit" value="Search">
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>Price</td>     
+                <td>Delete</td>
+                <td>Edit Price</td>
+            </tr>
+            {{#each model}}
+            <tr>
+                <td>{{productName}}</td>
+                <td>{{price}}</td>
+                <td><a href="/delete?id={{_id}}" onclick="return confirmXoa('{{productName}}')">Delete</a></td>
+                <td><a href="/Edit?id={{_id}}">Edit</a></td>
+            </tr>
+            {{/each}}
+        </table>
+         {{> footer}}
+    </div>
+
+   
+    <script>
+        function confirmXoa(name) {
+            let r = confirm('Ban co muon xoa ' + name + '?');
+            return r;
+        }
+    </script>
+</body>
+
+</html>
